@@ -1,75 +1,88 @@
 package org.suai.lab_11;
 
-
-import java.io.*;
+import java.io.IOException;
 import java.net.*;
 import java.util.Scanner;
 
 public class UDPChatClient {
+    private static String userName = "Client";
     private static volatile boolean running = true;
-    private static String username = "Client";
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws IOException {
         if (args.length != 2) {
-            System.out.println("Использование: java UDPChatClient <IP-сервера> <порт>");
+            System.out.println("Использование: java UDPChatClient <ip> <порт>");
             return;
         }
 
-        InetAddress serverAddress = InetAddress.getByName(args[0]);
+        InetAddress serverIP = InetAddress.getByName(args[0]);
         int serverPort = Integer.parseInt(args[1]);
-        DatagramSocket socket = new DatagramSocket();
 
-        Thread receiver = new Thread(() -> {
-            byte[] receiveBuffer = new byte[1024];
-            while (running) {
-                try {
-                    DatagramPacket packet = new DatagramPacket(receiveBuffer, receiveBuffer.length);
-                    socket.receive(packet);
-                    String message = new String(packet.getData(), 0, packet.getLength());
-                    System.out.println("\n[Сервер]: " + message);
-                    if (message.trim().equals("@quit")) {
-                        System.out.println("Сервер завершил чат.");
-                        running = false;
-                    }
-                } catch (IOException e) {
-                    if (running) e.printStackTrace();
-                }
-            }
-        });
+        DatagramSocket socket = new DatagramSocket();
+        socket.setSoTimeout(1000);
+
+        System.out.println("Клиент подключается к " + serverIP.getHostAddress() + ":" + serverPort);
+        System.out.println("Команды: @name <имя>, @quit");
 
         Thread sender = new Thread(() -> {
             Scanner scanner = new Scanner(System.in);
-
-            System.out.println("Введите @name <имя>, чтобы задать имя. Введите сообщение для отправки. @quit - выход.");
-
             while (running) {
-                String input = scanner.nextLine().trim();
-                if (input.startsWith("@name ")) {
-                    username = input.substring(6).trim();
-                    System.out.println("Имя пользователя установлено: " + username);
+                if (!scanner.hasNextLine()) continue;
+                String message = scanner.nextLine();
+
+                if (message.startsWith("@name ")) {
+                    userName = message.substring(6);
+                    System.out.println("Имя изменено: " + userName);
                     continue;
-                } else if (input.equals("@quit")) {
+                }
+
+                if (message.equals("@quit")) {
                     running = false;
-                    input = "@quit";
                 }
 
-                try {
-                    String fullMessage = username + ": " + input;
-                    byte[] sendBuffer = fullMessage.getBytes();
-                    DatagramPacket packet = new DatagramPacket(sendBuffer, sendBuffer.length, serverAddress, serverPort);
-                    socket.send(packet);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                String fullMessage = "[" + userName + "]: " + message;
+                send(socket, fullMessage, serverIP, serverPort);
             }
-
-            socket.close();
+            scanner.close();
         });
 
-        receiver.start();
-        sender.start();
+        Thread receiver = new Thread(() -> {
+            byte[] buffer = new byte[1024];
+            while (running) {
+                DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
+                try {
+                    socket.receive(packet);
+                    String msg = new String(packet.getData(), 0, packet.getLength());
+                    System.out.println("[Сервер]: " + msg);
 
-        receiver.join();
-        sender.join();
+                    if (msg.trim().endsWith("@quit")) {
+                        running = false;
+                        System.out.println("Сервер завершил работу.");
+                    }
+                } catch (SocketTimeoutException e) {
+                } catch (IOException e) {
+                    if (running) System.err.println("Ошибка: " + e.getMessage());
+                }
+            }
+        });
+
+        sender.start();
+        receiver.start();
+
+        try {
+            sender.join();
+            receiver.join();
+        } catch (InterruptedException ignored) {}
+
+        socket.close();
+        System.out.println("Клиент завершил работу.");
+    }
+
+    private static void send(DatagramSocket socket, String msg, InetAddress ip, int port) {
+        byte[] buffer = msg.getBytes();
+        try {
+            socket.send(new DatagramPacket(buffer, buffer.length, ip, port));
+        } catch (IOException e) {
+            System.err.println("Ошибка при отправке: " + e.getMessage());
+        }
     }
 }
