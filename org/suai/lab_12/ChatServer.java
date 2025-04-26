@@ -10,7 +10,7 @@ public class ChatServer {
     public static void main(String[] args) throws IOException {
         int portNumber = Integer.parseInt(args[0]);
         ServerSocket serverSocket = new ServerSocket(portNumber);
-        System.out.println("Chat server started on port " + portNumber);
+        System.out.println("Server vzletel, port: " + portNumber);
 
         while (true) {
             Socket clientSocket = serverSocket.accept();
@@ -38,16 +38,16 @@ public class ChatServer {
                 while ((inputLine = in.readLine()) != null) {
                     if (inputLine.startsWith("@name ")) {
                         clientName = inputLine.substring(6).trim();
-                        if (clientName.isEmpty() || clientWriters.containsKey(clientName)) {
-                            out.println("Invalid or duplicate name. Try again.");
+                        if (clientName.isEmpty() || clientWriters.containsKey(clientName) || clientName.equals("Server")) {
+                            out.println("Takoe imya zaprescheno ili ono uzhe zanyato.");
                         } else {
                             clientWriters.put(clientName, out);
-                            broadcast("Server: " + clientName + " has joined the chat");
+                            broadcast("[Server]: '" + clientName + "' zaletel v chat!");
                         }
                     } else if (inputLine.equals("@quit")) {
                         if (clientName != null) {
                             clientWriters.remove(clientName);
-                            broadcast("Server: " + clientName + " has left the chat");
+                            broadcast("[Server]: '" + clientName + "' uletel ot nas :(");
                         }
                         break;
                     } else if (inputLine.startsWith("@senduser ")) {
@@ -57,23 +57,23 @@ public class ChatServer {
                             String privateMessage = inputLine.substring(firstSpace + 1);
                             sendPrivateMessage(targetName, privateMessage);
                         } else {
-                            out.println("Usage: @senduser <username> <message>");
+                            out.println("Ispolsovanie: @senduser <username> <message>");
                         }
                     } else {
                         if (clientName != null) {
-                            broadcast(clientName + ": " + inputLine);
+                            broadcastExcluded("[" + clientName + "]: " + inputLine);
                         } else {
-                            out.println("Set your name first using @name <yourname>");
+                            out.println("Nazovis! @name <yourname>");
                         }
                     }
                 }
             } catch (IOException e) {
-                System.err.println("Error handling client: " + e.getMessage());
+                System.err.println("Oshibka otpravki clientu: " + e.getMessage());
             } finally {
                 try {
                     socket.close();
                 } catch (IOException e) {
-                    System.err.println("Couldn't close a socket: " + e.getMessage());
+                    System.err.println("Ne poluchilos zakrit socket: " + e.getMessage());
                 }
             }
         }
@@ -84,12 +84,23 @@ public class ChatServer {
             }
         }
 
+        private void broadcastExcluded(String message) {
+            for (String client : clientWriters.keySet()) {
+                if (clientName.equals(client)) {
+                    clientWriters.get(clientName).println("/otpravleno/");
+                    continue;
+                }
+                clientWriters.get(client).println(message);
+            }
+        }
+
         private void sendPrivateMessage(String targetName, String message) {
             PrintWriter targetWriter = clientWriters.get(targetName);
             if (targetWriter != null) {
-                targetWriter.println("(Private) " + clientName + ": " + message);
+                targetWriter.println("(Private) [" + clientName + "]: " + message);
+                clientWriters.get(clientName).println("/otpravleno/");
             } else {
-                out.println("User " + targetName + " not found.");
+                out.println("Polsovatel '" + targetName + "' ne naiden.");
             }
         }
     }

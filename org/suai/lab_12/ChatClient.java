@@ -6,7 +6,7 @@ import java.net.*;
 public class ChatClient {
     public static void main(String[] args) throws IOException {
         if (args.length != 2) {
-            System.out.println("Usage: java ChatClient <host> <port>");
+            System.out.println("Ispolsovanie: java ChatClient <host> <port>");
             return;
         }
 
@@ -22,21 +22,24 @@ public class ChatClient {
             try {
                 String fromServer;
                 while ((fromServer = in.readLine()) != null) {
-                    System.out.println(fromServer);
+                    System.out.println("\n<<< " + fromServer);
+                    System.out.print(">>> ");
                 }
             } catch (IOException e) {
-                System.err.println("Connection closed: " + e.getMessage());
+                System.err.println("Soedinenie zakrito: " + e.getMessage());
             }
         });
         readerThread.start();
 
-        System.out.println("Connected to the chat server.");
+        System.out.println("Podkluchenie k serveru.");
+        System.out.print(">>> ");
         String userInput;
         while ((userInput = stdIn.readLine()) != null) {
             out.println(userInput);
             if (userInput.equals("@quit")) {
                 break;
             }
+            System.out.print(">>> ");
         }
 
         socket.close();
