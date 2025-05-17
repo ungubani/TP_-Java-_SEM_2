@@ -39,7 +39,6 @@ public class ChatClient {
             if (userInput.equals("@quit")) {
                 break;
             }
-            System.out.print(">>> ");
         }
 
         socket.close();

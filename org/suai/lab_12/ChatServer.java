@@ -56,12 +56,14 @@ public class ChatServer {
                             String targetName = inputLine.substring(10, firstSpace);
                             String privateMessage = inputLine.substring(firstSpace + 1);
                             sendPrivateMessage(targetName, privateMessage);
+                            out.println("/otpravleno/");
                         } else {
                             out.println("Ispolsovanie: @senduser <username> <message>");
                         }
                     } else {
                         if (clientName != null) {
                             broadcastExcluded("[" + clientName + "]: " + inputLine);
+                            out.println("/otpravleno/");
                         } else {
                             out.println("Nazovis! @name <yourname>");
                         }
@@ -87,7 +89,6 @@ public class ChatServer {
         private void broadcastExcluded(String message) {
             for (String client : clientWriters.keySet()) {
                 if (clientName.equals(client)) {
-                    clientWriters.get(clientName).println("/otpravleno/");
                     continue;
                 }
                 clientWriters.get(client).println(message);
@@ -98,7 +99,6 @@ public class ChatServer {
             PrintWriter targetWriter = clientWriters.get(targetName);
             if (targetWriter != null) {
                 targetWriter.println("(Private) [" + clientName + "]: " + message);
-                clientWriters.get(clientName).println("/otpravleno/");
             } else {
                 out.println("Polsovatel '" + targetName + "' ne naiden.");
             }
