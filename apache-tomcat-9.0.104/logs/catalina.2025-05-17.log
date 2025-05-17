@@ -1,0 +1,48 @@
+17-May-2025 18:55:53.697 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version name:   Apache Tomcat/9.0.104
+17-May-2025 18:55:53.707 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server built:          Apr 4 2025 12:32:55 UTC
+17-May-2025 18:55:53.707 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version number: 9.0.104.0
+17-May-2025 18:55:53.708 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Name:               Linux
+17-May-2025 18:55:53.708 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Version:            6.8.0-52-generic
+17-May-2025 18:55:53.709 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Architecture:          amd64
+17-May-2025 18:55:53.709 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Java Home:             /usr/lib/jvm/java-11-openjdk-amd64
+17-May-2025 18:55:53.710 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Version:           11.0.26+4-post-Ubuntu-1ubuntu122.04
+17-May-2025 18:55:53.710 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Vendor:            Ubuntu
+17-May-2025 18:55:53.711 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_BASE:         /home/dragon/Desktop/TP/apache-tomcat-9.0.104
+17-May-2025 18:55:53.711 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_HOME:         /home/dragon/Desktop/TP/apache-tomcat-9.0.104
+17-May-2025 18:55:53.738 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.lang=ALL-UNNAMED
+17-May-2025 18:55:53.740 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.lang.invoke=ALL-UNNAMED
+17-May-2025 18:55:53.741 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.lang.reflect=ALL-UNNAMED
+17-May-2025 18:55:53.741 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.io=ALL-UNNAMED
+17-May-2025 18:55:53.742 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.util=ALL-UNNAMED
+17-May-2025 18:55:53.742 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.util.concurrent=ALL-UNNAMED
+17-May-2025 18:55:53.742 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED
+17-May-2025 18:55:53.743 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.config.file=/home/dragon/Desktop/TP/apache-tomcat-9.0.104/conf/logging.properties
+17-May-2025 18:55:53.743 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+17-May-2025 18:55:53.744 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djdk.tls.ephemeralDHKeySize=2048
+17-May-2025 18:55:53.744 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.protocol.handler.pkgs=org.apache.catalina.webresources
+17-May-2025 18:55:53.744 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dsun.io.useCanonCaches=false
+17-May-2025 18:55:53.745 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dorg.apache.catalina.security.SecurityListener.UMASK=0027
+17-May-2025 18:55:53.745 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dignore.endorsed.dirs=
+17-May-2025 18:55:53.745 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.base=/home/dragon/Desktop/TP/apache-tomcat-9.0.104
+17-May-2025 18:55:53.746 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.home=/home/dragon/Desktop/TP/apache-tomcat-9.0.104
+17-May-2025 18:55:53.746 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.io.tmpdir=/home/dragon/Desktop/TP/apache-tomcat-9.0.104/temp
+17-May-2025 18:55:53.750 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent The Apache Tomcat Native library which allows using OpenSSL was not found on the java.library.path: [/usr/java/packages/lib:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib]
+17-May-2025 18:55:54.641 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["http-nio-8080"]
+17-May-2025 18:55:54.699 INFO [main] org.apache.catalina.startup.Catalina.load Server initialization in [1496] milliseconds
+17-May-2025 18:55:54.839 INFO [main] org.apache.catalina.core.StandardService.startInternal Starting service [Catalina]
+17-May-2025 18:55:54.840 INFO [main] org.apache.catalina.core.StandardEngine.startInternal Starting Servlet engine: [Apache Tomcat/9.0.104]
+17-May-2025 18:55:54.855 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/home/dragon/Desktop/TP/apache-tomcat-9.0.104/webapps/manager]
+17-May-2025 18:55:55.483 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/home/dragon/Desktop/TP/apache-tomcat-9.0.104/webapps/manager] has finished in [628] ms
+17-May-2025 18:55:55.484 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/home/dragon/Desktop/TP/apache-tomcat-9.0.104/webapps/ROOT]
+17-May-2025 18:55:55.534 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/home/dragon/Desktop/TP/apache-tomcat-9.0.104/webapps/ROOT] has finished in [51] ms
+17-May-2025 18:55:55.535 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/home/dragon/Desktop/TP/apache-tomcat-9.0.104/webapps/examples]
+17-May-2025 18:55:56.042 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/home/dragon/Desktop/TP/apache-tomcat-9.0.104/webapps/examples] has finished in [507] ms
+17-May-2025 18:55:56.042 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/home/dragon/Desktop/TP/apache-tomcat-9.0.104/webapps/docs]
+17-May-2025 18:55:56.094 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/home/dragon/Desktop/TP/apache-tomcat-9.0.104/webapps/docs] has finished in [51] ms
+17-May-2025 18:55:56.095 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/home/dragon/Desktop/TP/apache-tomcat-9.0.104/webapps/host-manager]
+17-May-2025 18:55:56.150 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/home/dragon/Desktop/TP/apache-tomcat-9.0.104/webapps/host-manager] has finished in [56] ms
+17-May-2025 18:55:56.151 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/home/dragon/Desktop/TP/apache-tomcat-9.0.104/webapps/lab13]
+17-May-2025 18:55:56.192 WARNING [main] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [5.0]. Default version will be used.
+17-May-2025 18:55:56.292 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/home/dragon/Desktop/TP/apache-tomcat-9.0.104/webapps/lab13] has finished in [141] ms
+17-May-2025 18:55:56.305 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["http-nio-8080"]
+17-May-2025 18:55:56.334 INFO [main] org.apache.catalina.startup.Catalina.start Server startup in [1633] milliseconds
